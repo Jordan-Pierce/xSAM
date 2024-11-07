@@ -113,6 +113,17 @@ sam_model_registry = {
     "vit_t": build_sam_vit_t,
     "edge_sam": build_edge_sam,
 }
+
+sam_model_urls = {
+    "vit_h": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth",
+    "vit_l": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth",
+    "vit_b": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth",
+    "vit_t": "https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt",
+    "edge_sam_3x": "https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt",
+    "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth"
+}
+
+
 build_sam = build_edge_sam
 
 

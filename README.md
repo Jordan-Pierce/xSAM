@@ -49,7 +49,32 @@ masks = mask_generator.generate(<your_image>)
 ```
 
 ## Model Checkpoints
-The following model checkpoints are available in the `checkpoints` folder, or below:
+For convenience, The following model checkpoints are available in the `sam_model_urls` dictionary and can be downloaded in python:
+
+```python
+import requests
+from x_segment_anything.build_sam import sam_model_urls
+
+def download_asset(asset_url, asset_path):
+    response = requests.get(asset_url)
+    with open(asset_path, 'wb') as f:
+        f.write(response.content)
+        
+model_path = "edge_sam.pt"
+model_path = "edge_sam_3x.pt"
+model_path = "vit_t.pt"
+model_path = "vit_b.pt"
+model_path = "vit_l.pt"
+model_path = "vit_h.pt"
+
+model = model_path.split(".")[0]
+model_url = sam_model_urls[model]
+
+download_asset(model_url, model_path)
+
+```
+
+### Model Checkpoint URLs:
 - [edge_sam](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth)
 - [edge_sam_3x](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth)
 - [vit_t](https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt)
