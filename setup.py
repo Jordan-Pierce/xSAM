@@ -10,7 +10,7 @@ setup(
     name="x_segment_anything",
     version="0.0.1",
     install_requires=["torch", "torchvision"],
-    packages=find_packages(exclude="notebooks"),
+    packages=find_packages(exclude="checkpoints"),
     extras_require={
         "all": ["matplotlib", "pycocotools", "opencv-python", "onnx", "onnxruntime"],
         "dev": ["flake8", "isort", "black", "mypy"],
