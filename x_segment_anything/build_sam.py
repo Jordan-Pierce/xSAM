@@ -113,6 +113,7 @@ sam_model_registry = {
     "vit_t": build_sam_vit_t,
     "edge_sam": build_edge_sam,
 }
+build_sam = build_edge_sam
 
 sam_model_urls = {
     "vit_h": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth",
@@ -122,9 +123,6 @@ sam_model_urls = {
     "edge_sam_3x": "https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt",
     "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth"
 }
-
-
-build_sam = build_edge_sam
 
 
 def _build_sam_encoder(

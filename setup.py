@@ -6,13 +6,22 @@
 
 from setuptools import find_packages, setup
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name="x_segment_anything",
-    version="0.0.1",
+    version="0.0.2",
+    author="Jordan Pierce",
+    author_email="jordan.pierce@noaa.gov",
+    url="https://github.com/Jordan-Pierce/xSAM",
+    python_requires=">=3.8",
     install_requires=["torch", "torchvision"],
     packages=find_packages(exclude="checkpoints"),
     extras_require={
         "all": ["matplotlib", "pycocotools", "opencv-python", "onnx", "onnxruntime"],
         "dev": ["flake8", "isort", "black", "mypy"],
     },
+    long_description=long_description,
+    long_description_content_type="text/markdown",
 )

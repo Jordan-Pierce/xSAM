@@ -11,7 +11,7 @@ dependencies. Installing both PyTorch and TorchVision with CUDA support is stron
 Install xSAM:
 
 ```bash
-pip install git+https://github.com/Jordan-Pierce/xSAM.git
+pip install x-segment-anything
 ```
 
 ## Getting Started

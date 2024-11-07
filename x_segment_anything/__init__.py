@@ -11,6 +11,7 @@ from .build_sam import (
     build_sam_vit_b,
     build_sam_vit_t,
     sam_model_registry,
+    sam_model_urls
 )
 from .predictor import SamPredictor
 from .automatic_mask_generator import SamAutomaticMaskGenerator
