@@ -11,7 +11,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="x_segment_anything",
-    version="0.0.2",
+    version="0.0.3",
     author="Jordan Pierce",
     author_email="jordan.pierce@noaa.gov",
     url="https://github.com/Jordan-Pierce/xSAM",
