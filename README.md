@@ -2,6 +2,9 @@
 
 In-house version of EdgeSAM, MobileSAM, and SAM modules combined in the same API (to make life easier).
 
+For more information on different SAM variants, please see the following:
+- [_On Efficient Variants of Segment Anything Model: A Survey_](https://arxiv.org/html/2410.04960v1)
+
 ## Installation
 
 The code requires `python>=3.8`, as well as `pytorch>=1.7` and `torchvision>=0.8`. 
@@ -20,13 +23,13 @@ The SAM models can be loaded in the following ways:
 ```python
 from x_segment_anything import sam_model_registry, SamPredictor
 
+model_type = "edge_sam"
 model_type = "vit_t"
 model_type = "vit_b"
 model_type = "vit_l"
 model_type = "vit_h"
-model_type = "edge_sam"
 
-sam_checkpoint = "checkpoints/model_x_weights.pt"
+sam_checkpoint = "path_to_checkpoints/model_x_weights.pt"
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
