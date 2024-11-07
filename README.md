@@ -15,10 +15,10 @@ pip install git+https://github.com/Jordan-Pierce/xSAM.git
 ```
 
 ## Getting Started
-The xSAM can be loaded in the following ways:
+The SAM models can be loaded in the following ways:
 
 ```python
-from x_segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+from x_segment_anything import sam_model_registry, SamPredictor
 
 model_type = "vit_t"
 model_type = "vit_b"
@@ -26,15 +26,15 @@ model_type = "vit_l"
 model_type = "vit_h"
 model_type = "edge_sam"
 
-sam_checkpoint = "model_weight.pt*"
+sam_checkpoint = "checkpoints/model_x_weights.pt"
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-mobile_sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-mobile_sam.to(device=device)
-mobile_sam.eval()
+x_sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+x_sam.to(device=device)
+x_sam.eval()
 
-predictor = SamPredictor(mobile_sam)
+predictor = SamPredictor(x_sam)
 predictor.set_image(<your_image>)
 masks, _, _ = predictor.predict(<input_prompts>)
 ```
@@ -42,13 +42,22 @@ masks, _, _ = predictor.predict(<input_prompts>)
 or generate masks for an entire image:
 
 ```python
-from mobile_sam import SamAutomaticMaskGenerator
+from x_segment_anything import SamAutomaticMaskGenerator
 
-mask_generator = SamAutomaticMaskGenerator(mobile_sam)
+mask_generator = SamAutomaticMaskGenerator(x_sam)
 masks = mask_generator.generate(<your_image>)
 ```
 
-### Aknowledgements:
+## Model Checkpoints
+The following model checkpoints are available in the `checkpoints` folder, or below:
+- [edge_sam](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth)
+- [edge_sam_3x](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth)
+- [vit_t](https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt)
+- [vit_b](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth)
+- [vit_l](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth)
+- [vit_h](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
+
+### Acknowledgements:
 - [EdgeSAM](https://github.com/chongzhou96/EdgeSAM)
 - [MobileSAM](https://github.com/ChaoningZhang/MobileSAM)
 - [SAM](https://github.com/facebookresearch/segment-anything)
