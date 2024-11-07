@@ -26,6 +26,9 @@ def build_sam_vit_h(checkpoint=None):
     return _build_sam(image_encoder, checkpoint)
 
 
+build_sam = build_sam_vit_h
+
+
 def build_sam_vit_l(checkpoint=None):
     image_encoder = _build_sam_encoder(
         encoder_embed_dim=1024,
@@ -113,8 +116,8 @@ sam_model_urls = {
     "vit_h": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth",
     "vit_l": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth",
     "vit_b": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth",
-    "vit_t": "https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt",
-    "edge_sam_3x": "https://huggingface.co/spaces/dhkim2810/MobileSAM/blob/main/mobile_sam.pt",
+    "vit_t": "https://huggingface.co/spaces/dhkim2810/MobileSAM/resolve/main/mobile_sam.pt",
+    "edge_sam_3x": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth",
     "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth"
 }
 
