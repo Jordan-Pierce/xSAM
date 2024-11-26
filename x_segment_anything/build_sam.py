@@ -5,10 +5,14 @@
 # LICENSE file in the root directory of this source tree.
 
 import torch
+from timm.models import create_model
 
 from functools import partial
 
-from .modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer, RepViT, TinyViT
+from .modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer
+from .modeling import TinyViT  # MobileSAM
+from .modeling import RepViT   # EdgeSAM
+from .modeling import repvit   # RepViTSAM
 
 prompt_embed_dim = 256
 image_size = 1024
@@ -49,6 +53,7 @@ def build_sam_vit_b(checkpoint=None):
     return _build_sam(image_encoder, checkpoint)
 
 
+# MobileSAM
 def build_sam_vit_t(checkpoint=None):
     mobile_sam = Sam(
         image_encoder=TinyViT(img_size=1024, in_chans=3, num_classes=1000,
@@ -89,11 +94,12 @@ def build_sam_vit_t(checkpoint=None):
     mobile_sam.eval()
     if checkpoint is not None:
         with open(checkpoint, "rb") as f:
-            state_dict = torch.load(f)
+            state_dict = torch.load(f, weights_only=True)
         mobile_sam.load_state_dict(state_dict)
     return mobile_sam
 
 
+# EdgeSAM
 def build_edge_sam(checkpoint=None, upsample_mode="bicubic"):
     image_encoder = RepViT(
         arch="m1",
@@ -103,6 +109,40 @@ def build_edge_sam(checkpoint=None, upsample_mode="bicubic"):
     return _build_sam(image_encoder, checkpoint)
 
 
+# RepViTSAM
+def build_sam_repvit(checkpoint=None):
+    repvit_sam = Sam(
+        image_encoder=create_model('repvit'),
+        prompt_encoder=PromptEncoder(
+            embed_dim=prompt_embed_dim,
+            image_embedding_size=(image_embedding_size, image_embedding_size),
+            input_image_size=(image_size, image_size),
+            mask_in_chans=16,
+        ),
+        mask_decoder=MaskDecoder(
+            num_multimask_outputs=3,
+            transformer=TwoWayTransformer(
+                depth=2,
+                embedding_dim=prompt_embed_dim,
+                mlp_dim=2048,
+                num_heads=8,
+            ),
+            transformer_dim=prompt_embed_dim,
+            iou_head_depth=3,
+            iou_head_hidden_dim=256,
+        ),
+        pixel_mean=[123.675, 116.28, 103.53],
+        pixel_std=[58.395, 57.12, 57.375],
+    )
+
+    repvit_sam.eval()
+    if checkpoint is not None:
+        with open(checkpoint, "rb") as f:
+            state_dict = torch.load(f, weights_only=True)
+        repvit_sam.load_state_dict(state_dict)
+    return repvit_sam
+
+
 sam_model_registry = {
     "default": build_edge_sam,
     "vit_h": build_sam_vit_h,
@@ -110,6 +150,7 @@ sam_model_registry = {
     "vit_b": build_sam_vit_b,
     "vit_t": build_sam_vit_t,
     "edge_sam": build_edge_sam,
+    "repvit": partial(build_sam_repvit)
 }
 
 sam_model_urls = {
@@ -118,7 +159,8 @@ sam_model_urls = {
     "vit_b": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth",
     "vit_t": "https://huggingface.co/spaces/dhkim2810/MobileSAM/resolve/main/mobile_sam.pt",
     "edge_sam_3x": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth",
-    "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth"
+    "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth",
+    "repvit": "https://huggingface.co/spaces/jameslahm/repvit-sam/resolve/main/repvit_sam.pt",
 }
 
 

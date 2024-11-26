@@ -1,3 +1,5 @@
+# EdgeSAM
+
 import torch.nn as nn
 from x_segment_anything.modeling.common import LayerNorm2d, UpSampleLayer, OpSequential
 

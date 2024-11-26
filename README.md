@@ -1,6 +1,12 @@
 # xSAM
 
-In-house version of EdgeSAM, MobileSAM, and SAM modules combined in the same API (to make life easier).
+Segment Anything Model (SAM) variants including:
+- RepViT-SAM 
+- EdgeSAM
+- MobileSAM
+- SAM (original) 
+
+combined in the same API (to make life easier).
 
 For more information on different SAM variants, please see the following:
 - [_On Efficient Variants of Segment Anything Model: A Survey_](https://arxiv.org/html/2410.04960v1)
@@ -23,6 +29,7 @@ The SAM models can be loaded in the following ways:
 ```python
 from x_segment_anything import sam_model_registry, SamPredictor
 
+model_type = "repvit"
 model_type = "edge_sam"
 model_type = "vit_t"
 model_type = "vit_b"
@@ -52,7 +59,8 @@ masks = mask_generator.generate(<your_image>)
 ```
 
 ## Model Checkpoints
-For convenience, The following model checkpoints are available in the `sam_model_urls` dictionary and can be downloaded in python:
+For convenience, The following model checkpoints are available in the `sam_model_urls` dictionary and can be downloaded 
+in python:
 
 ```python
 import requests
@@ -62,7 +70,8 @@ def download_asset(asset_url, asset_path):
     response = requests.get(asset_url)
     with open(asset_path, 'wb') as f:
         f.write(response.content)
-        
+
+model_path = "repvit.pt"
 model_path = "edge_sam.pt"
 model_path = "edge_sam_3x.pt"
 model_path = "vit_t.pt"
@@ -78,6 +87,7 @@ download_asset(model_url, model_path)
 ```
 
 ### Model Checkpoint URLs:
+- [repvit](https://huggingface.co/spaces/jameslahm/repvit-sam/resolve/main/repvit_sam.pt)
 - [edge_sam](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth)
 - [edge_sam_3x](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth)
 - [vit_t](https://huggingface.co/spaces/dhkim2810/MobileSAM/resolve/main/mobile_sam.pt)
@@ -86,10 +96,12 @@ download_asset(model_url, model_path)
 - [vit_h](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
 
 ### Acknowledgements:
+- [RepViT-SAM](https://github.com/THU-MIG/RepViT/tree/main)
 - [EdgeSAM](https://github.com/chongzhou96/EdgeSAM)
 - [MobileSAM](https://github.com/ChaoningZhang/MobileSAM)
 - [SAM](https://github.com/facebookresearch/segment-anything)
 
+--- 
 ## Disclaimer
 
 This repository is a scientific product and is not official communication of the National 
