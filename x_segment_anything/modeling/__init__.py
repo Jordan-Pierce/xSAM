@@ -9,5 +9,6 @@ from .image_encoder import ImageEncoderViT
 from .mask_decoder import MaskDecoder
 from .prompt_encoder import PromptEncoder
 from .transformer import TwoWayTransformer
-from .rep_vit import *
-from .tiny_vit_sam import TinyViT
+from .rep_vit import *                      # EdgeSAM
+from .tiny_vit_sam import TinyViT           # MobileSAM
+from .repvit import repvit                  # RepViTSAM
