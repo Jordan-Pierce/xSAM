@@ -1,6 +1,7 @@
 # xSAM
 
 Segment Anything Model (SAM) variants including:
+- CoralSCOP
 - RepViT-SAM 
 - EdgeSAM
 - MobileSAM
@@ -87,6 +88,7 @@ download_asset(model_url, model_path)
 ```
 
 ### Model Checkpoint URLs:
+- [coralscop](https://github.com/Jordan-Pierce/CoralSCOP/releases/download/v0.0.1/vit_b_coralscop.pth)
 - [repvit](https://huggingface.co/spaces/jameslahm/repvit-sam/resolve/main/repvit_sam.pt)
 - [edge_sam](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth)
 - [edge_sam_3x](https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth)
@@ -96,6 +98,7 @@ download_asset(model_url, model_path)
 - [vit_h](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
 
 ### Acknowledgements:
+- [CoralSCOP](https://github.com/zhengziqiang/CoralSCOP)
 - [RepViT-SAM](https://github.com/THU-MIG/RepViT/tree/main)
 - [EdgeSAM](https://github.com/chongzhou96/EdgeSAM)
 - [MobileSAM](https://github.com/ChaoningZhang/MobileSAM)
