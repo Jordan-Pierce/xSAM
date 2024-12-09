@@ -82,14 +82,15 @@ class MaskDecoder(nn.Module):
             4096, iou_head_hidden_dim, cate_num, iou_head_depth
         )
 
+
     def forward(
         self,
         image_embeddings: torch.Tensor,
         image_pe: torch.Tensor,
         sparse_prompt_embeddings: torch.Tensor,
         dense_prompt_embeddings: torch.Tensor,
-        multimask_output: bool,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        num_multimask_outputs: int,
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         """
         Predict masks given image and prompt embeddings.
 
@@ -98,14 +99,14 @@ class MaskDecoder(nn.Module):
           image_pe (torch.Tensor): positional encoding with the shape of image_embeddings
           sparse_prompt_embeddings (torch.Tensor): the embeddings of the points and boxes
           dense_prompt_embeddings (torch.Tensor): the embeddings of the mask inputs
-          multimask_output (bool): Whether to return multiple masks or a single
-            mask.
+          num_multimask_outputs (int): the number of masks to predict
+            when disambiguating masks
 
         Returns:
           torch.Tensor: batched predicted masks
           torch.Tensor: batched predictions of mask quality
         """
-        masks, iou_pred, cate_pred,fc_features = self.predict_masks(
+        masks, iou_pred = self.predict_masks(
             image_embeddings=image_embeddings,
             image_pe=image_pe,
             sparse_prompt_embeddings=sparse_prompt_embeddings,
@@ -113,17 +114,20 @@ class MaskDecoder(nn.Module):
         )
 
         # Select the correct mask or masks for output
-        if multimask_output:
+        if num_multimask_outputs == 4:
+            mask_slice = slice(0, None)
+        elif num_multimask_outputs == 3:
             mask_slice = slice(1, None)
-        else:
+        elif num_multimask_outputs == 1:
             mask_slice = slice(0, 1)
+        else:
+            raise ValueError
+
         masks = masks[:, mask_slice, :, :]
         iou_pred = iou_pred[:, mask_slice]
-        cate_pred = cate_pred[:,mask_slice,:]
-        fc_features = fc_features[:, mask_slice, :]
 
         # Prepare output
-        return masks, iou_pred, cate_pred, fc_features
+        return masks, iou_pred
 
     def predict_masks(
         self,
