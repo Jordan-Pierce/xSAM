@@ -12,3 +12,4 @@ from .transformer import TwoWayTransformer
 from .rep_vit import *                      # EdgeSAM
 from .tiny_vit_sam import TinyViT           # MobileSAM
 from .repvit import repvit                  # RepViTSAM
+from .mask_decoder_coralscop import MaskDecoder as MaskDecoderCoralSCOP
