@@ -175,7 +175,7 @@ sam_model_urls = {
     "edge_sam_3x": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam_3x.pth",
     "edge_sam": "https://huggingface.co/spaces/chongzhou/EdgeSAM/resolve/main/weights/edge_sam.pth",
     "repvit": "https://huggingface.co/spaces/jameslahm/repvit-sam/resolve/main/repvit_sam.pt",
-    "vit_b_coralscop": ""
+    "vit_b_coralscop": "https://github.com/Jordan-Pierce/CoralSCOP/releases/download/v0.0.1/vit_b_coralscop.pth"
 }
 
 
