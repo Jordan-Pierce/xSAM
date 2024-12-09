@@ -146,7 +146,7 @@ def build_sam_repvit(checkpoint=None):
 
 # CoralSCOP
 def build_sam_vit_b_coralscop(checkpoint=None):
-    return _build_sam(
+    return _build_sam_coralscop(
         encoder_embed_dim=768,
         encoder_depth=12,
         encoder_num_heads=12,
