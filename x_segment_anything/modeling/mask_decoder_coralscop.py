@@ -178,7 +178,7 @@ class MaskDecoder(nn.Module):
         cate_pred,fc_features = self.cate_prediction_head(features)
         cate_pred=cate_pred.view(b,-1,self.cate_num)
 
-        return masks, iou_pred, cate_pred, fc_features
+        return masks, iou_pred
 
 
 # Lightly adapted from
