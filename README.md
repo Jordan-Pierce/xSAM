@@ -30,6 +30,7 @@ The SAM models can be loaded in the following ways:
 ```python
 from x_segment_anything import sam_model_registry, SamPredictor
 
+model_type = "vit_b_coralscop"
 model_type = "repvit"
 model_type = "edge_sam"
 model_type = "vit_t"
@@ -72,6 +73,7 @@ def download_asset(asset_url, asset_path):
     with open(asset_path, 'wb') as f:
         f.write(response.content)
 
+model_path = "vit_b_coral_scop.pt"
 model_path = "repvit.pt"
 model_path = "edge_sam.pt"
 model_path = "edge_sam_3x.pt"
