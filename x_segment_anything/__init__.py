@@ -2,7 +2,7 @@
 
 __author__ = """Jordan Pierce"""
 __email__ = "jordan.pierce@noaa.gov"
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 __credits__ = "National Center for Coastal and Ocean Sciences (NCCOS)"
 
 from .build_sam import (
