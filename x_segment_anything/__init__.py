@@ -1,10 +1,5 @@
 """Top-level package for xSAM."""
 
-__author__ = """Jordan Pierce"""
-__email__ = "jordan.pierce@noaa.gov"
-__version__ = "0.0.7"
-
-
 from .build_sam import (
     build_sam,
     build_sam_vit_h,
@@ -16,3 +11,8 @@ from .build_sam import (
 )
 from .predictor import SamPredictor
 from .automatic_mask_generator import SamAutomaticMaskGenerator
+
+__author__ = """Jordan Pierce"""
+__email__ = "jordan.pierce@noaa.gov"
+__version__ = "0.0.7"
+__credits__ = "National Center for Coastal and Ocean Sciences (NCCOS)"
