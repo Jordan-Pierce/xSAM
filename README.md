@@ -1,5 +1,16 @@
 # xSAM
 
+<div align="center">
+
+[![python-version](https://img.shields.io/pypi/pyversions/x-segment-anything.svg)](https://pypi.org/project/x-segment-anything)
+[![version](https://img.shields.io/pypi/v/x-segment-anything.svg)](https://pypi.python.org/pypi/yolo-tiling)
+[![pypi-passing](https://github.com/Jordan-Pierce/xSAM/actions/workflows/pypi.yml/badge.svg)](https://pypi.org/project/x-segment-anything)
+[![windows](https://github.com/Jordan-Pierce/xSAM/actions/workflows/windows.yml/badge.svg)](https://pypi.org/project/x-segment-anything)
+[![macos](https://github.com/Jordan-Pierce/xSAM/actions/workflows/macos.yml/badge.svg)](https://pypi.org/project/x-segment-anything)
+[![ubuntu](https://github.com/Jordan-Pierce/xSAM/actions/workflows/ubuntu.yml/badge.svg)](https://pypi.org/project/x-segment-anything)
+</div>
+
+
 Segment Anything Model (SAM) variants including:
 - CoralSCOP
 - RepViT-SAM 
