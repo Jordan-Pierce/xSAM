@@ -1,0 +1,67 @@
+site_name: xSAM
+site_description: Segment Anything Model (SAM) modules combined in the same API (to make life easier).
+site_author: Jordan-Pierce
+site_url: https://Jordan-Pierce.github.io/xSAM
+repo_url: https://github.com/Jordan-Pierce/xSAM
+
+copyright: "Copyright &copy; 2024 - 2024 Jordan Pierce"
+
+theme:
+    palette:
+        - scheme: default
+          #   primary: blue
+          #   accent: indigo
+          toggle:
+              icon: material/toggle-switch-off-outline
+              name: Switch to dark mode
+        - scheme: slate
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/toggle-switch
+              name: Switch to light mode
+    name: material
+    icon:
+        repo: fontawesome/brands/github
+    # logo: assets/logo.png
+    # favicon: assets/favicon.png
+    features:
+        - navigation.instant
+        - navigation.tracking
+        - navigation.top
+        - search.highlight
+        - search.share
+    custom_dir: "docs/overrides"
+    font:
+        text: Google Sans
+        code: Regular
+
+plugins:
+    - search
+    - mkdocstrings
+    - git-revision-date
+    - git-revision-date-localized:
+          enable_creation_date: true
+          type: timeago
+    # - pdf-export
+    - mkdocs-jupyter:
+          include_source: True
+          ignore_h1_titles: True
+          execute: True
+          allow_errors: false
+          ignore: ["conf.py"]
+          execute_ignore: ["*ignore.ipynb"]
+          
+markdown_extensions:
+    - admonition
+    - abbr
+    - attr_list
+    - def_list
+    - footnotes
+    - meta
+    - md_in_html
+    - pymdownx.superfences
+    - pymdownx.highlight:
+          linenums: true
+    - toc:
+          permalink: true

@@ -1,8 +1,9 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
+"""Top-level package for xSAM."""
 
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
+__author__ = """Jordan Pierce"""
+__email__ = "jordan.pierce@noaa.gov"
+__version__ = "0.0.7"
+
 
 from .build_sam import (
     build_sam,

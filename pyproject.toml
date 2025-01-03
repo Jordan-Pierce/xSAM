@@ -1,0 +1,56 @@
+# pyproject.toml
+[project]
+name = "x_segment_anything"  # Changed to match setup.py
+version = "0.0.7"
+dynamic = [
+    "dependencies",
+]
+description = "Segment Anything Model (SAM) modules combined in the same API (to make life easier)."
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "xSAM",
+]
+license = {text = "MIT License"}
+authors = [
+  {name = "Jordan Pierce", email = "jordan.pierce@noaa.gov"},
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+all = [
+    "matplotlib",
+    "pycocotools",
+    "opencv-python",
+    "onnx",
+    "onnxruntime"
+]
+dev = [
+    "flake8",
+    "isort",
+    "black",
+    "mypy"
+]
+
+[tool.setuptools.packages.find]
+include = ["x_segment_anything*"]
+exclude = ["checkpoints", "docs*"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/Jordan-Pierce/xSAM"
