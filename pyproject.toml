@@ -1,6 +1,5 @@
-# pyproject.toml
 [project]
-name = "x_segment_anything"  # Changed to match setup.py
+name = "x_segment_anything"
 version = "0.0.7"
 dynamic = [
     "dependencies",
@@ -41,6 +40,7 @@ dev = [
     "mypy"
 ]
 
+[tool]
 [tool.setuptools.packages.find]
 include = ["x_segment_anything*"]
 exclude = ["checkpoints", "docs*"]
@@ -48,9 +48,35 @@ exclude = ["checkpoints", "docs*"]
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 
-[build-system]
-requires = ["setuptools>=64", "setuptools_scm>=8"]
-build-backend = "setuptools.build_meta"
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.bumpversion]
+current_version = "0.0.3"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "yolo_tiler/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+
+[tool.flake8]
+exclude = [
+    "docs",
+]
+max-line-length = 88
 
 [project.urls]
 Homepage = "https://github.com/Jordan-Pierce/xSAM"
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
