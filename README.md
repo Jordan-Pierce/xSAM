@@ -56,13 +56,17 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 x_sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
 x_sam.to(device=device)
 x_sam.eval()
+```
 
+With the model loaded, you can create a predictor (requiring prompts):
+
+```bash
 predictor = SamPredictor(x_sam)
 predictor.set_image(<your_image>)
 masks, _, _ = predictor.predict(<input_prompts>)
 ```
 
-or generate masks for an entire image:
+Or a generator to automatically create masks for an entire image:
 
 ```python
 from x_segment_anything import SamAutomaticMaskGenerator
