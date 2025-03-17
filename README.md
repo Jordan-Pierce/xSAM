@@ -39,7 +39,7 @@ pip install x-segment-anything
 The SAM models can be loaded in the following ways:
 
 ```python
-from x_segment_anything import sam_model_registry, SamPredictor
+from x_segment_anything import sam_model_registry
 
 model_type = "vit_b_coralscop"
 model_type = "repvit"
@@ -61,6 +61,8 @@ x_sam.eval()
 With the model loaded, you can create a predictor (requiring prompts):
 
 ```bash
+from x_segment_anything import SamPredictor
+
 predictor = SamPredictor(x_sam)
 predictor.set_image(<your_image>)
 masks, _, _ = predictor.predict(<input_prompts>)
